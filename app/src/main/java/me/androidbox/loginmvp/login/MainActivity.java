@@ -15,7 +15,7 @@ public class MainActivity extends AppCompatActivity {
 
         if(savedInstanceState == null) {
             FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-            fragmentTransaction.add(R.id.login_fragment_container, LoginFragment.getInstance(), "LoginFragment");
+            fragmentTransaction.add(R.id.login_fragment_container, LoginFragmentView.getInstance(1234), "LoginFragmentView");
             fragmentTransaction.commit();
         }
     }

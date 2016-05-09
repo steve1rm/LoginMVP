@@ -11,6 +11,7 @@ public class LoginModelImp implements LoginModel {
     public void login(final String username,
                       final String password,
                       final OnLoginCompletedListener onLoginCompletedListener) {
+
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -29,6 +30,6 @@ public class LoginModelImp implements LoginModel {
                     onLoginCompletedListener.onSuccess();
                 }
             }
-        }, 2000); /* Wait 2 seconds */
+        }, 3000); /* Wait 2 seconds */
     }
 }
