@@ -70,4 +70,10 @@ public class LoginFragmentView extends Fragment implements LoginFragmentViewCont
     public void onLoginFailed(String errorMessage) {
         Toast.makeText(getActivity(), "onLoginFailed " + errorMessage, Toast.LENGTH_LONG).show();
     }
+
+    @Override
+    public void onDestroy() {
+        mLoginPresenterImp.onDestroy();
+        super.onDestroy();
+    }
 }

@@ -13,30 +13,42 @@ public class LoginPresenterImp implements LoginPresenterContract, LoginModelCont
         mLoginModelImp = new LoginModelImp();
     }
 
-    /* LoginPresenterContact - implementation */
+    /*
+     * LoginPresenterContact - implementation
+     */
     @Override
     public void onDestroy() {
-
+        mLoginFragmentView = null;
     }
 
     @Override
     public void validateCredentials(String username, String password) {
-        mLoginModelImp.login(username, password, LoginPresenterImp.this);
+        if(mLoginModelImp != null) {
+            mLoginModelImp.login(username, password, LoginPresenterImp.this);
+        }
     }
 
-    /* LoginModelContract.OnLoginCompletedListener - implementation */
+    /*
+     * LoginModelContract.OnLoginCompletedListener - implementation
+     */
     @Override
     public void onUsernameError() {
-        mLoginFragmentView.onLoginFailed("Incorrect username");
+        if(mLoginFragmentView != null) {
+            mLoginFragmentView.onLoginFailed("Incorrect username");
+        }
     }
 
     @Override
     public void onPasswordError() {
-        mLoginFragmentView.onLoginFailed("Incorrect password");
+        if(mLoginFragmentView != null) {
+            mLoginFragmentView.onLoginFailed("Incorrect password");
+        }
     }
 
     @Override
     public void onSuccess() {
-        mLoginFragmentView.onLoginSuccess();
+        if(mLoginFragmentView != null) {
+            mLoginFragmentView.onLoginSuccess();
+        }
     }
 }

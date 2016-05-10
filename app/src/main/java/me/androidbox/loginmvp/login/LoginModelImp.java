@@ -7,6 +7,11 @@ import android.text.TextUtils;
  * Created by steve on 5/9/16.
  */
 public class LoginModelImp implements LoginModelContract {
+
+    /* Valid username and passwords */
+    private static String validUsername = "steve";
+    private static String validPassword = "1234";
+
     @Override
     public void login(final String username,
                       final String password,
@@ -16,20 +21,25 @@ public class LoginModelImp implements LoginModelContract {
             @Override
             public void run() {
                 boolean hasSuccess = true;
-                if(TextUtils.isEmpty(username)) {
-                    onLoginCompletedListener.onUsernameError();
-                    hasSuccess = false;
+
+                if(!TextUtils.isEmpty(username)) {
+                    if(!username.equals(validUsername)) {
+                        onLoginCompletedListener.onUsernameError();
+                        hasSuccess = false;
+                    }
                 }
 
-                if(TextUtils.isEmpty(password)) {
-                    onLoginCompletedListener.onPasswordError();
-                    hasSuccess = false;
+                if(!TextUtils.isEmpty(password)) {
+                    if(!password.equals(validPassword)) {
+                        onLoginCompletedListener.onPasswordError();
+                        hasSuccess = false;
+                    }
                 }
 
                 if(hasSuccess) {
                     onLoginCompletedListener.onSuccess();
                 }
             }
-        }, 3000); /* Wait 2 seconds */
+        }, 2000); /* Wait 2 seconds */
     }
 }
