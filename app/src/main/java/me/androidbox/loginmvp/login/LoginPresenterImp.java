@@ -3,15 +3,17 @@ package me.androidbox.loginmvp.login;
 /**
  * Created by steve on 5/9/16.
  */
-public class LoginPresenterImp implements LoginPresenter, LoginModel.OnLoginCompletedListener {
+public class LoginPresenterImp implements LoginPresenterContract, LoginModelContract.OnLoginCompletedListener {
 
     private LoginModelImp mLoginModelImp;
     private LoginFragmentView mLoginFragmentView;
 
     public LoginPresenterImp(LoginFragmentView loginFragmentView) {
         this.mLoginFragmentView = loginFragmentView;
+        mLoginModelImp = new LoginModelImp();
     }
 
+    /* LoginPresenterContact - implementation */
     @Override
     public void onDestroy() {
 
@@ -22,6 +24,7 @@ public class LoginPresenterImp implements LoginPresenter, LoginModel.OnLoginComp
         mLoginModelImp.login(username, password, LoginPresenterImp.this);
     }
 
+    /* LoginModelContract.OnLoginCompletedListener - implementation */
     @Override
     public void onUsernameError() {
         mLoginFragmentView.onLoginFailed("Incorrect username");

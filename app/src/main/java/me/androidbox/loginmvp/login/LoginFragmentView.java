@@ -1,20 +1,30 @@
 package me.androidbox.loginmvp.login;
 
 
-import android.os.Bundle;
 import android.app.Fragment;
+import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.Toast;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 import me.androidbox.loginmvp.R;
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class LoginFragmentView extends Fragment implements LoginFragmentViewContract {
+    private static final String TAG = LoginFragmentView.class.getSimpleName();
 
+    @BindView(R.id.etUsername) EditText mEtUsername;
+    @BindView(R.id.etPassword) EditText mEtPassword;
+
+    private LoginPresenterImp mLoginPresenterImp;
 
     public LoginFragmentView() {
         // Required empty public constructor
@@ -32,14 +42,23 @@ public class LoginFragmentView extends Fragment implements LoginFragmentViewCont
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+        Log.d(TAG, "onCreateView");
+
         final View view = inflater.inflate(R.layout.fragment_login, container, false);
+        ButterKnife.bind(LoginFragmentView.this, view);
 
-        LoginPresenterImp loginPresenterImp = new LoginPresenterImp(LoginFragmentView.this);
+        Log.d(TAG, "Username: " + mEtUsername.getText().toString());
 
-        loginPresenterImp.validateCredentials("steve", "1234");
+        mLoginPresenterImp = new LoginPresenterImp(LoginFragmentView.this);
 
         return view;
+    }
+
+    @SuppressWarnings("unused")
+    @OnClick(R.id.btnSubmitLogin)
+    public void submitLogin() {
+        Log.d(TAG, "submitLogin");
+        mLoginPresenterImp.validateCredentials(mEtUsername.getText().toString(), mEtPassword.getText().toString());
     }
 
     @Override
@@ -49,6 +68,6 @@ public class LoginFragmentView extends Fragment implements LoginFragmentViewCont
 
     @Override
     public void onLoginFailed(String errorMessage) {
-        Toast.makeText(getActivity(), "onLoginFailed", Toast.LENGTH_LONG).show();
+        Toast.makeText(getActivity(), "onLoginFailed " + errorMessage, Toast.LENGTH_LONG).show();
     }
 }

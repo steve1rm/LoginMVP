@@ -6,7 +6,7 @@ import android.text.TextUtils;
 /**
  * Created by steve on 5/9/16.
  */
-public class LoginModelImp implements LoginModel {
+public class LoginModelImp implements LoginModelContract {
     @Override
     public void login(final String username,
                       final String password,
