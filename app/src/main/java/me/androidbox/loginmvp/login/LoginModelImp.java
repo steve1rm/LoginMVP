@@ -22,18 +22,14 @@ public class LoginModelImp implements LoginModelContract {
             public void run() {
                 boolean hasSuccess = true;
 
-                if(!TextUtils.isEmpty(username)) {
-                    if(!username.equals(validUsername)) {
-                        onLoginCompletedListener.onUsernameError();
-                        hasSuccess = false;
-                    }
+                if(TextUtils.isEmpty(username) || !username.equals(validUsername)) {
+                    onLoginCompletedListener.onUsernameError();
+                    hasSuccess = false;
                 }
 
-                if(!TextUtils.isEmpty(password)) {
-                    if(!password.equals(validPassword)) {
-                        onLoginCompletedListener.onPasswordError();
-                        hasSuccess = false;
-                    }
+                if(TextUtils.isEmpty(password) || !password.equals(validPassword)) {
+                    onLoginCompletedListener.onPasswordError();
+                    hasSuccess = false;
                 }
 
                 if(hasSuccess) {
