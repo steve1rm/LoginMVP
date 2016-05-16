@@ -51,6 +51,13 @@ public class LoginFragmentView extends Fragment implements LoginFragmentViewCont
 
         mLoginPresenterImp = new LoginPresenterImp(LoginFragmentView.this);
 
+        if(new ProHelperImp().isPro()) {
+            Toast.makeText(getActivity(), "Is the Pro verson", Toast.LENGTH_LONG).show();
+        }
+        else {
+            Toast.makeText(getActivity(), "Is the Free Version", Toast.LENGTH_LONG).show();
+        }
+
         return view;
     }
 
