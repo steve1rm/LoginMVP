@@ -22,9 +22,9 @@ public class LoginPresenterImp implements LoginPresenterContract, LoginModelCont
     }
 
     @Override
-    public void validateCredentials(String username, String password) {
+    public void validateCredentials() {
         if(mLoginModelImp != null) {
-            mLoginModelImp.login(username, password, LoginPresenterImp.this);
+            mLoginModelImp.login(mLoginFragmentView.getUsername(), mLoginFragmentView.getPassword(), LoginPresenterImp.this);
         }
     }
 

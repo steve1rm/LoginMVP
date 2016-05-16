@@ -58,7 +58,17 @@ public class LoginFragmentView extends Fragment implements LoginFragmentViewCont
     @OnClick(R.id.btnSubmitLogin)
     public void submitLogin() {
         Log.d(TAG, "submitLogin");
-        mLoginPresenterImp.validateCredentials(mEtUsername.getText().toString(), mEtPassword.getText().toString());
+        mLoginPresenterImp.validateCredentials();
+    }
+
+    @Override
+    public String getUsername() {
+        return mEtUsername.getText().toString();
+    }
+
+    @Override
+    public String getPassword() {
+        return mEtPassword.getText().toString();
     }
 
     @Override
