@@ -11,6 +11,8 @@ android {
         targetSdkVersion 23
         versionCode 1
         versionName "1.0"
+
+        testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
     }
 
     buildTypes {
@@ -41,8 +43,10 @@ android {
             ]
         }
     }
+
     sourceSets {
         pro {
+            /* Adds user permissions that merges into the manifest */
             manifest.srcFile 'src/pro/AndroidManifest.xml'
         }
     }
@@ -55,4 +59,12 @@ dependencies {
     compile 'com.android.support:support-v4:23.4.0'
     compile 'com.jakewharton:butterknife:8.0.1'
     apt 'com.jakewharton:butterknife-compiler:8.0.1'
+
+    /** Instrumentation testing */
+    androidTestCompile ('com.android.support.test:runner:0.5'){
+        exclude group: 'com.android.support'
+    }
+    androidTestCompile ('com.android.support.test.espresso:espresso-core:2.2.2') {
+        exclude group: 'com.android.support'
+    }
 }

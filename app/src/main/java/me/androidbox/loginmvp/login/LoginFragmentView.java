@@ -49,7 +49,8 @@ public class LoginFragmentView extends Fragment implements LoginFragmentViewCont
 
         Log.d(TAG, "Username: " + mEtUsername.getText().toString());
 
-        mLoginPresenterImp = new LoginPresenterImp(LoginFragmentView.this);
+        mLoginPresenterImp = new LoginPresenterImp();
+        mLoginPresenterImp.onAttachView(LoginFragmentView.this);
 
         if(new ProHelperImp().isPro()) {
             Toast.makeText(getActivity(), "Is the Pro verson", Toast.LENGTH_LONG).show();

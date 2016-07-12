@@ -3,19 +3,24 @@ package me.androidbox.loginmvp.login;
 /**
  * Created by steve on 5/9/16.
  */
-public class LoginPresenterImp implements LoginPresenterContract, LoginModelContract.OnLoginCompletedListener {
+public class LoginPresenterImp implements LoginPresenterContract<LoginFragmentView>, LoginModelContract.OnLoginCompletedListener {
 
     private LoginModelImp mLoginModelImp;
     private LoginFragmentView mLoginFragmentView;
 
-    public LoginPresenterImp(LoginFragmentView loginFragmentView) {
-        this.mLoginFragmentView = loginFragmentView;
+    public LoginPresenterImp() {
         mLoginModelImp = new LoginModelImp();
     }
 
     /*
      * LoginPresenterContact - implementation
      */
+
+    @Override
+    public void onAttachView(LoginFragmentView view) {
+        this.mLoginFragmentView = view;
+    }
+
     @Override
     public void onDestroy() {
         mLoginFragmentView = null;
