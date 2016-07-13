@@ -1,0 +1,71 @@
+package me.androidbox.loginmvp;
+
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+import org.mockito.Mockito;
+
+import me.androidbox.loginmvp.login.LoginFragmentView;
+import me.androidbox.loginmvp.login.LoginFragmentViewContract;
+import me.androidbox.loginmvp.login.LoginModelContract;
+import me.androidbox.loginmvp.login.LoginPresenterContract;
+import me.androidbox.loginmvp.login.LoginPresenterImp;
+
+import static org.junit.Assert.*;
+import static org.mockito.Mockito.verifyZeroInteractions;
+import static org.mockito.Mockito.when;
+
+/**
+ * Created by steve on 7/13/16.
+ */
+public class LoginPresenterImpTest {
+    private LoginFragmentViewContract mMockViewContract;
+    private LoginModelContract mMockModelContract;
+    private LoginPresenterContract<LoginFragmentViewContract> mLoginPresenterContract;
+
+    @Before
+    public void setUp() throws Exception {
+        mMockViewContract = Mockito.mock(LoginFragmentViewContract.class);
+        mMockModelContract = Mockito.mock(LoginModelContract.class);
+
+        mLoginPresenterContract = new LoginPresenterImp(mMockModelContract);
+        mLoginPresenterContract.attachView(mMockViewContract);
+    }
+
+    @After
+    public void tearDown() throws Exception {
+        mLoginPresenterContract = null;
+        mMockModelContract = null;
+        mMockViewContract = null;
+    }
+
+    @Test
+    public void shouldHaveNoInteractions() {
+        verifyZeroInteractions(mMockViewContract);
+    }
+
+    @Test
+    public void shouldIfNoUsernameOrPassword() {
+
+    }
+
+    @Test
+    public void testValidateCredentials() {
+
+    }
+
+    @Test
+    public void testOnUsernameError() {
+
+    }
+
+    @Test
+    public void testOnPasswordError() {
+
+    }
+
+    @Test
+    public void testOnSuccess() {
+
+    }
+}

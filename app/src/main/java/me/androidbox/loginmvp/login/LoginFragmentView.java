@@ -49,7 +49,8 @@ public class LoginFragmentView extends Fragment implements LoginFragmentViewCont
 
         Log.d(TAG, "Username: " + mEtUsername.getText().toString());
 
-        mLoginPresenterImp = new LoginPresenterImp(LoginFragmentView.this);
+        mLoginPresenterImp = new LoginPresenterImp();
+        mLoginPresenterImp.attachView(LoginFragmentView.this);
 
         return view;
     }
@@ -58,7 +59,17 @@ public class LoginFragmentView extends Fragment implements LoginFragmentViewCont
     @OnClick(R.id.btnSubmitLogin)
     public void submitLogin() {
         Log.d(TAG, "submitLogin");
-        mLoginPresenterImp.validateCredentials(mEtUsername.getText().toString(), mEtPassword.getText().toString());
+        mLoginPresenterImp.validateCredentials();
+    }
+
+    @Override
+    public String getPassword() {
+        return mEtPassword.getText().toString();
+    }
+
+    @Override
+    public String getUsername() {
+        return mEtUsername.getText().toString();
     }
 
     @Override
@@ -72,8 +83,8 @@ public class LoginFragmentView extends Fragment implements LoginFragmentViewCont
     }
 
     @Override
-    public void onDestroy() {
-        mLoginPresenterImp.onDestroy();
-        super.onDestroy();
+    public void onDestroyView() {
+        mLoginPresenterImp.detachView();
+        super.onDestroyView();
     }
 }
