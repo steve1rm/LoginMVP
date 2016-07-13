@@ -12,6 +12,7 @@ import me.androidbox.loginmvp.login.LoginPresenterContract;
 import me.androidbox.loginmvp.login.LoginPresenterImp;
 
 import static org.junit.Assert.*;
+import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.verifyZeroInteractions;
 import static org.mockito.Mockito.when;
 
@@ -46,7 +47,10 @@ public class LoginPresenterImpTest {
 
     @Test
     public void shouldIfNoUsernameOrPassword() {
+        when(mMockViewContract.getUsername()).thenReturn(anyString());
+        when(mMockViewContract.getPassword()).thenReturn(anyString());
 
+        mLoginPresenterContract.validateCredentials();
     }
 
     @Test
