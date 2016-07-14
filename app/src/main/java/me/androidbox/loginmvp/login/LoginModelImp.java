@@ -7,8 +7,7 @@ import android.text.TextUtils;
  * Created by steve on 5/9/16.
  */
 public class LoginModelImp implements LoginModelContract {
-
-    /* Valid username and passwords */
+    /* Testing Valid username and passwords */
     private static String validUsername = "steve";
     private static String validPassword = "1234";
 
@@ -21,7 +20,6 @@ public class LoginModelImp implements LoginModelContract {
             @Override
             public void run() {
                 boolean hasSuccess = true;
-
                 if(TextUtils.isEmpty(username) || !username.equals(validUsername)) {
                     onLoginCompletedListener.onUsernameError();
                     hasSuccess = false;
